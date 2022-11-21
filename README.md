@@ -1,20 +1,64 @@
-# ${NAME}
+# VDPin
 
-[![CI Status](https://img.shields.io/travis/dankinsoid/${NAME}.svg?style=flat)](https://travis-ci.org/dankinsoid/${NAME})
-[![Version](https://img.shields.io/cocoapods/v/${NAME}.svg?style=flat)](https://cocoapods.org/pods/${NAME})
-[![License](https://img.shields.io/cocoapods/l/${NAME}.svg?style=flat)](https://cocoapods.org/pods/${NAME})
-[![Platform](https://img.shields.io/cocoapods/p/${NAME}.svg?style=flat)](https://cocoapods.org/pods/${NAME})
+[![CI Status](https://img.shields.io/travis/dankinsoid/VDPin.svg?style=flat)](https://travis-ci.org/dankinsoid/VDPin)
+[![Version](https://img.shields.io/cocoapods/v/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
+[![License](https://img.shields.io/cocoapods/l/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
+[![Platform](https://img.shields.io/cocoapods/p/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
 
 
 ## Description
-This repository provides
 
-## Example
+This repository provides some convenience methods for creating constraints.
 
-```swift
 
-```
 ## Usage
+
+1. Pin attributes of the view to a specified item or its superview.
+```swift
+view.pin(.edges)
+view.pin(.leading)
+view.pin(.edges(.horizontal), 16)
+view.pin(edges: [.top, .bottom], 10, to: safeAreaLayoutGuide)
+view.pin(edges: [.top: 10, .horizontal: 5], to: safeAreaLayoutGuide)
+// pin view after/before another view
+view.pin(to: .bottom, of: anotherView, with: .offset(10))
+view.pin(.center, 10)
+view.pin([.size: 100, .centerY: 10, .top: 20, .edges(.horizontal): 10])
+```
+2. Pin any attributes between two views
+```swift
+view.pin(.top, to: .centerY, of: anotherView)
+```
+3. Set aspect ratio of the view.
+```swift
+view.pin(aspectRatio: 2 / 3)
+```
+4. All pin methods contain a `with options` parameter.
+```swift
+view.pin(.edges, 10, with: .priority(.required))
+```
+options:
+- `.priority(300)`: set the priority of the constraint
+- `.offset(10)`: set the offset of the constraint
+- `.multiplier(2)`: set the multiplier of the constraint
+- `.relation(.greaterThanOrEqual)`, `.greaterThanOrEqual`, `.lessThanOrEqual`: set the relation of the constraint
+- `.inactive`, `.activated(false)`: set the active state of the constraint
+- `.update`: update the constraint if it already exists
+- `.translatesAutoresizingMask`: don't change `translatesAutoresizingMaskIntoConstraints` property
+- `.safeArea`: use `safeAreaLayoutGuide` instead of `superview` as default second item
+5. All these methods can be chained
+```swift
+view
+    .pin(.edges(.horizontal), 10)
+    .pin(to: .bottom, of: anotherView.pin(.height, 50), with: .offset(20))
+    .pin(.size, 100)
+```
+6. Use `PartialRangeThrough` and `PartialRangeFrom` for offset value
+```swift
+view.pin(.bottom, 10..., with: .safeArea)
+view.pin(to: .bottom, of: anotherView, with: .offset(...10))
+```
+7. All these methods return `Constraints` object, that can be used for updating constraints.
 
  
 ## Installation
@@ -22,7 +66,7 @@ This repository provides
 
 Add the following line to your Podfile:
 ```ruby
-pod '${NAME}'
+pod 'VDPin'
 ```
 and run `pod update` from the podfile directory first.
 
@@ -36,10 +80,10 @@ import PackageDescription
 let package = Package(
   name: "SomeProject",
   dependencies: [
-    .package(url: "https://github.com/dankinsoid/${NAME}.git", from: "0.0.1")
+    .package(url: "https://github.com/dankinsoid/VDPin.git", from: "1.0.0")
   ],
   targets: [
-    .target(name: "SomeProject", dependencies: ["${NAME}"])
+    .target(name: "SomeProject", dependencies: ["VDPin"])
   ]
 )
 ```
@@ -53,4 +97,4 @@ dankinsoid, voidilov@gmail.com
 
 ## License
 
-${NAME} is available under the MIT license. See the LICENSE file for more info.
+VDPin is available under the MIT license. See the LICENSE file for more info.

@@ -4,18 +4,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "${NAME}",
+    name: "VDPin",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v13)
     ],
     products: [
-        .library(name: "${NAME}", targets: ["${NAME}"]),
+        .library(name: "VDPin", targets: ["VDPin"])
     ],
     dependencies: [
     ],
     targets: [
         .target(
-            name: "${NAME}",
+            name: "VDPin",
             dependencies: [
             ]
         )
