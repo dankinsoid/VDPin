@@ -85,7 +85,7 @@ $ swift build
 
 Add the following line to your Podfile:
 ```ruby
-pod 'VDLayout'
+pod 'VDPin'
 ```
 and run `pod update` from the podfile directory first.
 
