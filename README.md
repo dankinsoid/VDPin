@@ -1,11 +1,5 @@
 # VDPin
 
-[![CI Status](https://img.shields.io/travis/dankinsoid/VDPin.svg?style=flat)](https://travis-ci.org/dankinsoid/VDPin)
-[![Version](https://img.shields.io/cocoapods/v/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
-[![License](https://img.shields.io/cocoapods/l/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
-[![Platform](https://img.shields.io/cocoapods/p/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
-
-
 ## Description
 
 This repository provides some convenience methods for creating constraints.
@@ -62,15 +56,7 @@ view.pin(to: .bottom, of: anotherView, options: .offset(...10))
 
  
 ## Installation
-1.  [CocoaPods](https://cocoapods.org)
-
-Add the following line to your Podfile:
-```ruby
-pod 'VDPin'
-```
-and run `pod update` from the podfile directory first.
-
-2. [Swift Package Manager](https://github.com/apple/swift-package-manager)
+1. [Swift Package Manager](https://github.com/apple/swift-package-manager)
 
 Create a `Package.swift` file.
 ```swift
