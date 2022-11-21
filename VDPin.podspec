@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VDPin'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'A short description of VDPin.'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
@@ -22,6 +22,6 @@ TODO: Add long description of the pod here.
   s.platform = :ios, '13.0'
   s.ios.deployment_target = '13.0'
   s.swift_versions = '5.7'
-  s.source_files = 'Sources/VDPin/*'
+  s.source_files = 'Sources/VDPin/**/*'
   s.frameworks = 'UIKit'
 end
