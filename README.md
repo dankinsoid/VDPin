@@ -1,5 +1,10 @@
 # VDPin
 
+[![CI Status](https://img.shields.io/travis/dankinsoid/VDPin.svg?style=flat)](https://travis-ci.org/dankinsoid/VDPin)
+[![Version](https://img.shields.io/cocoapods/v/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
+[![License](https://img.shields.io/cocoapods/l/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
+[![Platform](https://img.shields.io/cocoapods/p/VDPin.svg?style=flat)](https://cocoapods.org/pods/VDPin)
+
 ## Description
 
 This repository provides some convenience methods for creating constraints.
@@ -66,7 +71,7 @@ import PackageDescription
 let package = Package(
   name: "SomeProject",
   dependencies: [
-    .package(url: "https://github.com/dankinsoid/VDPin.git", from: "1.0.2")
+    .package(url: "https://github.com/dankinsoid/VDPin.git", from: "1.0.3")
   ],
   targets: [
     .target(name: "SomeProject", dependencies: ["VDPin"])
@@ -76,6 +81,13 @@ let package = Package(
 ```ruby
 $ swift build
 ```
+2.  [CocoaPods](https://cocoapods.org)
+
+Add the following line to your Podfile:
+```ruby
+pod 'VDLayout'
+```
+and run `pod update` from the podfile directory first.
 
 ## Author
 
