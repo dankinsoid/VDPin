@@ -21,7 +21,7 @@ view.pin(.edges(.horizontal), 16)
 view.pin(edges: [.top, .bottom], 10, to: safeAreaLayoutGuide)
 view.pin(edges: [.top: 10, .horizontal: 5], to: safeAreaLayoutGuide)
 // pin view after/before another view
-view.pin(to: .bottom, of: anotherView, with: .offset(10))
+view.pin(to: .bottom, of: anotherView, options: .offset(10))
 view.pin(.center, 10)
 view.pin([.size: 100, .centerY: 10, .top: 20, .edges(.horizontal): 10])
 ```
@@ -35,7 +35,7 @@ view.pin(aspectRatio: 2 / 3)
 ```
 4. All pin methods contain a `with options` parameter.
 ```swift
-view.pin(.edges, 10, with: .priority(.required))
+view.pin(.edges, 10, options: .priority(.required))
 ```
 options:
 - `.priority(300)`: set the priority of the constraint
@@ -50,13 +50,13 @@ options:
 ```swift
 view
     .pin(.edges(.horizontal), 10)
-    .pin(to: .bottom, of: anotherView.pin(.height, 50), with: .offset(20))
+    .pin(to: .bottom, of: anotherView.pin(.height, 50), options: .offset(20))
     .pin(.size, 100)
 ```
 6. Use `PartialRangeThrough` and `PartialRangeFrom` for offset value
 ```swift
 view.pin(.bottom, 10..., with: .safeArea)
-view.pin(to: .bottom, of: anotherView, with: .offset(...10))
+view.pin(to: .bottom, of: anotherView, options: .offset(...10))
 ```
 7. All these methods return `Constraints` object, that can be used for updating constraints.
 
