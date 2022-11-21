@@ -30,7 +30,7 @@ extension UIViewController: NSLayoutConstraintable, Pinnable {
     public var constraintItem: AnyObject { view }
 }
 
-public extension NSLayoutConstraintable {
+extension NSLayoutConstraintable {
     
     var superviewConstraintItem: (any NSLayoutConstraintable)? {
         asUIView?.superview
