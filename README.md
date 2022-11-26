@@ -17,7 +17,7 @@ This repository provides some convenience methods for creating constraints.
 view.pin(.edges)
 view.pin(.leading)
 view.pin(.edges(.horizontal), 16)
-view.pin(edges: [.top, .bottom], 10, to: safeAreaLayoutGuide)
+view.pin(edges(.top, .bottom), 10, to: safeAreaLayoutGuide)
 view.pin(edges: [.top: 10, .horizontal: 5], to: safeAreaLayoutGuide)
 // pin view after/before another view
 view.pin(to: .bottom, of: anotherView, options: .offset(10))
