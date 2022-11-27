@@ -20,7 +20,7 @@ view.pin(.edges(.horizontal), 16)
 view.pin(edges(.top, .bottom), 10, to: safeAreaLayoutGuide)
 view.pin(edges: [.top: 10, .horizontal: 5], to: safeAreaLayoutGuide)
 // pin view after/before another view
-view.pin(to: .bottom, of: anotherView, options: .offset(10))
+rightView.pin(to: .trailing, of: leftView, options: .offset(10))
 view.pin(.center, 10)
 view.pin([.size: 100, .centerY: 10, .top: 20, .edges(.horizontal): 10])
 ```
