@@ -8,7 +8,7 @@ public extension NSLayoutConstraint {
         attribute secondAttribute: NSLayoutConstraint.Attribute,
         toItem secondItem: (any NSLayoutConstraintable)?,
         options: Options,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> NSLayoutConstraint {
         if options.turnOffAutoresizing {
@@ -53,8 +53,7 @@ public extension NSLayoutConstraint {
     }
 
     func setIdentifierFor(filePath: String, line: UInt) {
-        let path = filePath.components(separatedBy: ["/"]).suffix(1).joined(separator: "/")
-        var id = "\(path) \(line) - \(firstAttribute)"
+        var id = "\(filePath) \(line) - \(firstAttribute)"
         if firstAttribute != secondAttribute, secondAttribute != .notAnAttribute {
             id += "/\(secondAttribute)"
         }

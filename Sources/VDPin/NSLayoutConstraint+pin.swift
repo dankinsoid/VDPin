@@ -13,7 +13,7 @@ public extension Pinnable {
         _ attributes: NSLayoutConstraint.Attribute.Set,
         to toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         makeConstraints { item in
@@ -45,7 +45,7 @@ public extension Pinnable {
         _ value: Value,
         to toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         pin(
@@ -69,7 +69,7 @@ public extension Pinnable {
         edges: [Edge.Set: CGFloat],
         to toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         makeConstraints { item in
@@ -100,7 +100,7 @@ public extension Pinnable {
         to edge: Edge,
         of item: any NSLayoutConstraintable,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         pin(
@@ -124,7 +124,7 @@ public extension Pinnable {
         _ attributes: [NSLayoutConstraint.Attribute.Set: CGFloat],
         to toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         makeConstraints { item in
@@ -151,24 +151,28 @@ public extension Pinnable {
         to secondAttributes: NSLayoutConstraint.Attribute.Set,
         of toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         let secondAttributesArray = secondAttributes.attributes
         let options = NSLayoutConstraint.Options(options)
         return makeConstraints { item in
-            firstAttributes.attributes.flatMap { firstAttribute in
-                secondAttributesArray.filter { $0.isCompatible(with: firstAttribute) }.map { secondAttribute in
-                    NSLayoutConstraint.create(
-                        attribute: firstAttribute,
-                        item: item,
-                        attribute: secondAttribute,
-                        toItem: toItem,
-                        options: options,
-                        file: file,
-                        line: line
-                    )
-                }
+            firstAttributes.attributes.compactMap { firstAttribute in
+                let filtered = secondAttributesArray.filter { $0.isCompatible(with: firstAttribute) }
+                let second = filtered.first { $0 == firstAttribute } ??
+                	filtered.first { $0.isSimilar(with: firstAttribute) } ??
+                	filtered.first
+                	return second.flatMap { secondAttribute in
+                        NSLayoutConstraint.create(
+                            attribute: firstAttribute,
+                            item: item,
+                            attribute: secondAttribute,
+                            toItem: toItem,
+                            options: options,
+                            file: file,
+                            line: line
+                        )
+                		}
             }
         }
     }
@@ -182,7 +186,7 @@ public extension Pinnable {
     func pin(
         aspectRatio: CGFloat,
         options: NSLayoutConstraint.Options...,
-        file: String = #filePath,
+        file: String = #fileID,
         line: UInt = #line
     ) -> ConstraintsCollection {
         let options = NSLayoutConstraint.Options(options + [.multiplier(aspectRatio)])

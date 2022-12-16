@@ -74,6 +74,12 @@ public extension NSLayoutConstraint.Attribute {
             $0.contains(self) && $0.contains(other)
         }
     }
+    
+    func isSimilar(with other: NSLayoutConstraint.Attribute) -> Bool {
+        self == other || NSLayoutConstraint.Attribute.similarityGroups.contains {
+            $0.contains(self) && $0.contains(other)
+        }
+    }
 }
 
 private extension NSLayoutConstraint.Attribute {
@@ -84,6 +90,22 @@ private extension NSLayoutConstraint.Attribute {
             [.top, .bottom, .lastBaseline, .firstBaseline, .topMargin, .bottomMargin, .centerY, .centerYWithinMargins],
             [.leading, .leadingMargin, .trailing, .trailingMargin, .centerX, .centerXWithinMargins],
             [.left, .leftMargin, .right, .rightMargin, .centerX, .centerXWithinMargins],
+            [.notAnAttribute]
+        ]
+    }
+    
+    static var similarityGroups: [Swift.Set<NSLayoutConstraint.Attribute>] {
+        [
+            [.width],
+            [.height],
+            [.top, .firstBaseline, .topMargin],
+            [.bottom, .lastBaseline, .bottomMargin],
+            [.centerY, .centerYWithinMargins],
+            [.leading, .leadingMargin],
+            [.trailing, .trailingMargin],
+            [.centerX, .centerXWithinMargins],
+            [.right, .rightMargin],
+            [.left, .leftMargin],
             [.notAnAttribute]
         ]
     }
