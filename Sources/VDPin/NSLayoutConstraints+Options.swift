@@ -116,13 +116,23 @@ public extension NSLayoutConstraint.Options {
     static var translatesAutoresizingMask: NSLayoutConstraint.Options {
         NSLayoutConstraint.Options(turnOffAutoresizing: false)
     }
-
-    static var safeArea: NSLayoutConstraint.Options {
+    
+    static var toSafeArea: NSLayoutConstraint.Options {
         NSLayoutConstraint.Options(useSafeArea: true)
     }
     
-    static var layoutMargins: NSLayoutConstraint.Options {
+    static var toLayoutMargins: NSLayoutConstraint.Options {
         NSLayoutConstraint.Options(useLayoutMargins: true)
+    }
+
+    @available(*, deprecated, message: "Use toSafeArea instead")
+    static var safeArea: NSLayoutConstraint.Options {
+        .toSafeArea
+    }
+    
+    @available(*, deprecated, message: "Use toLayoutMargins instead")
+    static var layoutMargins: NSLayoutConstraint.Options {
+        .toLayoutMargins
     }
 }
 
