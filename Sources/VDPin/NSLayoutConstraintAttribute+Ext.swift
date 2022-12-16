@@ -70,7 +70,9 @@ extension NSLayoutConstraint.Attribute: CustomStringConvertible {
 public extension NSLayoutConstraint.Attribute {
 
     func isCompatible(with other: NSLayoutConstraint.Attribute) -> Bool {
-        self == other || NSLayoutConstraint.Attribute.compatibilityGroups.contains { $0.contains(self) && $0.contains(other) }
+        self == other || NSLayoutConstraint.Attribute.compatibilityGroups.contains {
+            $0.contains(self) && $0.contains(other)
+        }
     }
 }
 

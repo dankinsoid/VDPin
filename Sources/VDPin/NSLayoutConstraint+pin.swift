@@ -149,7 +149,7 @@ public extension Pinnable {
     func pin(
         _ firstAttributes: NSLayoutConstraint.Attribute.Set,
         to secondAttributes: NSLayoutConstraint.Attribute.Set,
-        of item: (any NSLayoutConstraintable)? = nil,
+        of toItem: (any NSLayoutConstraintable)? = nil,
         options: NSLayoutConstraint.Options...,
         file: String = #filePath,
         line: UInt = #line
@@ -163,7 +163,7 @@ public extension Pinnable {
                         attribute: firstAttribute,
                         item: item,
                         attribute: secondAttribute,
-                        toItem: item,
+                        toItem: toItem,
                         options: options,
                         file: file,
                         line: line
