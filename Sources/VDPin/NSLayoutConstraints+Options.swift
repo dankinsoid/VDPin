@@ -12,6 +12,7 @@ public extension NSLayoutConstraint {
         public var update: Bool
         public var turnOffAutoresizing: Bool
         public var useSafeArea: Bool
+        public var useLayoutMargins: Bool
 
         public init(_ elements: [Options]) {
             self.init(
@@ -22,7 +23,8 @@ public extension NSLayoutConstraint {
                 activated: elements.compactMap(\.activated).nilIfEmpty?.contains { $0 },
                 update: elements.contains { $0.update },
                 turnOffAutoresizing: !(elements.contains { !$0.turnOffAutoresizing }),
-                useSafeArea: elements.contains { $0.useSafeArea }
+                useSafeArea: elements.contains { $0.useSafeArea },
+                useLayoutMargins: elements.contains { $0.useLayoutMargins }
             )
         }
 
@@ -34,7 +36,8 @@ public extension NSLayoutConstraint {
             activated: Bool? = nil,
             update: Bool = false,
             turnOffAutoresizing: Bool = true,
-            useSafeArea: Bool = false
+            useSafeArea: Bool = false,
+            useLayoutMargins: Bool = false
         ) {
             self.offset = offset
             self.multiplier = multiplier
@@ -44,10 +47,15 @@ public extension NSLayoutConstraint {
             self.update = update
             self.turnOffAutoresizing = turnOffAutoresizing
             self.useSafeArea = useSafeArea
+            self.useLayoutMargins = useLayoutMargins
         }
 
         public init(arrayLiteral elements: Options...) {
             self.init(elements)
+        }
+        
+        public init() {
+            self.init(offset: 0)
         }
     }
 
@@ -64,9 +72,7 @@ public extension NSLayoutConstraint {
 
 public extension NSLayoutConstraint.Options {
 
-    static var `default`: NSLayoutConstraint.Options {
-        NSLayoutConstraint.Options(priority: .required, activated: true)
-    }
+    static var `default` = NSLayoutConstraint.Options()
 
     static func offset<Value: ConstraintsRangeConvertable>(_ offset: Value) -> NSLayoutConstraint.Options {
         NSLayoutConstraint.Options(
@@ -113,6 +119,10 @@ public extension NSLayoutConstraint.Options {
 
     static var safeArea: NSLayoutConstraint.Options {
         NSLayoutConstraint.Options(useSafeArea: true)
+    }
+    
+    static var layoutMargins: NSLayoutConstraint.Options {
+        NSLayoutConstraint.Options(useLayoutMargins: true)
     }
 }
 

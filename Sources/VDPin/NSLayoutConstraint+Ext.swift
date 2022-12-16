@@ -39,7 +39,9 @@ public extension NSLayoutConstraint {
             item: firstItem.constraintItem,
             attribute: firstAttribute,
             relatedBy: firstAttribute.relation(for: options.relation),
-            toItem: options.useSafeArea ? toItem?.asUIView?.safeAreaLayoutGuide : toItem?.constraintItem,
+            toItem: options.useSafeArea ? toItem?.asUIView?.safeAreaLayoutGuide
+            	: options.useLayoutMargins ? toItem?.asUIView?.layoutMarginsGuide
+            	: toItem?.constraintItem,
             attribute: secondAttribute,
             multiplier: options.multiplier,
             constant: options.offset * firstAttribute.offsetMultiplier

@@ -230,7 +230,8 @@ public extension NSLayoutConstraint.Attribute.Set {
         .edges(.all)
     }
     
-    static func margins(_ edges: Edge.Set, _ optional: Edge.Set...) -> NSLayoutConstraint.Attribute.Set {let edges = optional.reduce(edges) { $0.union($1) }
+    static func margins(_ edges: Edge.Set, _ optional: Edge.Set...) -> NSLayoutConstraint.Attribute.Set {
+        let edges = optional.reduce(edges) { $0.union($1) }
         var result: NSLayoutConstraint.Attribute.Set = []
         if edges.contains(.top) {
             result.insert(.topMargin)
