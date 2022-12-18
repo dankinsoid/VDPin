@@ -19,15 +19,6 @@ extension Edge.Set: Hashable {
         if contains(.bottom) { result.insert(.top) }
         return result
     }
-
-    public init(_ edge: Edge) {
-        switch edge {
-        case .leading: self = .leading
-        case .trailing: self = .trailing
-        case .top: self = .top
-        case .bottom: self = .bottom
-        }
-    }
 }
 
 extension UIRectEdge: Hashable {
